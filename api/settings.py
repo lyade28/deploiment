@@ -27,10 +27,11 @@ SECRET_KEY = 'django-insecure-^fftm$6rsjiatu==4vhn8ji(olwwt0h*q2)%_!%@1&t+9xp&j4
 DEBUG = True
 
 # ALLOWED_HOSTS = []
+
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS = [
-    'https://deploiments.herokuapp.com/',
+    'https://apiisep.herokuapp.com/',
 
 ]
 
