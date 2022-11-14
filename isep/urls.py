@@ -14,7 +14,7 @@ urlpatterns = [
     path('planning', PlanningList.as_view(), name='planning_list'),
     path('planning/<int:pk>', Planningdestail.as_view(), name='planning_details'),
     path('semaines', SemaineList.as_view(), name='semaine_list'),
-    path('semaines/<int:pk>', Salledestail.as_view(), name='semaine_details'),
+    path('semaines/<int:pk>',  Semainedestail.as_view(), name='semaine_details'),
     path('filliereMetiers', FilliereMetierList.as_view(), name='filliereMetiers_list'),
     path('filliereMetiers/<int:pk>', FilliereMetierdestail.as_view(), name='sfilliereMetiers_details'),
 ]
