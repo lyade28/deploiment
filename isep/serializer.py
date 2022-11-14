@@ -27,7 +27,7 @@ class SalleSerializer(serializers.ModelSerializer):
 class FiliereSerializer(serializers.ModelSerializer):
     class Meta:
         model = Filiere
-        fields = ['id', 'libelle', 'metier', 'planning']
+        fields = ['id', 'libelle', 'metier']
         depth = 1
 
 
