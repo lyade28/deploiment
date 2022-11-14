@@ -19,7 +19,7 @@ class Salledestail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class FiliereList(generics.ListCreateAPIView):
-    queryset = Salle.objects.all()
+    queryset = Filiere.objects.all()
     serializer_class = FiliereSerializer
 
 
