@@ -11,25 +11,25 @@ metier = [
 
 
 class Salle(models.Model):
-    Libelle = models.CharField(max_length=200, null=True)
+    libelle = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        return self.Libelle
+        return self.libelle
 
 
 class Filiere(models.Model):
-    Libelle = models.CharField(max_length=300, null=True)
+    libelle = models.CharField(max_length=300, null=True)
     metier = models.CharField(choices=metier, max_length=200, null=True)
 
     def __str__(self):
-        return self.Libelle
+        return self.libelle
 
 
 class Cour(models.Model):
-    Libelle = models.CharField(max_length=300, null=True)
+    libelle = models.CharField(max_length=300, null=True)
 
     def __str__(self):
-        return self.Libelle
+        return self.libelle
 
 
 class Formateur(models.Model):
@@ -44,10 +44,10 @@ class Planning(models.Model):
     date = models.DateField(null=True)
     heureDebut = models.TimeField(null=True)
     heureFin = models.TimeField(null=True)
-    activite = models.ForeignKey(Cour, on_delete=models.CASCADE, null=True)
-    filiere = models.ForeignKey(Filiere, on_delete=models.CASCADE, null=True)
-    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, null=True)
-    salle = models.ForeignKey(Salle, on_delete=models.CASCADE, null=True)
+    activite = models.CharField(  max_length=200, null=True)
+    filiere = models.CharField( max_length=200, null=True)
+    formateur = models.CharField( max_length=200, null=True)
+    salle = models.CharField( max_length=200, null=True)
     promo = models.CharField(max_length=300, null=True)
     annee = models.CharField(max_length=300, null=True)
     semaine = models.CharField(max_length=300, null=True)
@@ -57,19 +57,19 @@ class Planning(models.Model):
 
 
 class FilliereMetier(models.Model):
-    Libelle = models.CharField(max_length=300, null=True)
+    libelle = models.CharField(max_length=300, null=True)
     metier = models.CharField(choices=metier, max_length=200, null=True)
-    planning = models.ForeignKey(Planning, on_delete=models.CASCADE, null=True)
+    planning = models.ManyToManyField(Planning)
 
     def __str__(self):
-        return self.Libelle
+        return self.libelle
 
 
 class Semaine(models.Model):
     code = models.CharField(max_length=200, null=True)
     metier = models.CharField(choices=metier, max_length=200, null=True)
     promo = models.CharField(max_length=200, null=True)
-    filiereMetiers = models.ForeignKey(FilliereMetier, on_delete=models.CASCADE, null=True)
+    filiereMetier = models.ManyToManyField(FilliereMetier)
 
     def __str__(self):
         return self.promo

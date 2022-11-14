@@ -3,11 +3,18 @@ from rest_framework import serializers
 from isep.models import *
 
 
+class PlanningSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Planning
+        fields = "__all__"
+        depth = 1
+
+
 class SemaineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Semaine
-        fields = "__all__"
-        depth = 2
+        fields = ['id', 'code', 'metier', 'promo', 'filiereMetier']
+        depth = 3
 
 
 class SalleSerializer(serializers.ModelSerializer):
@@ -20,7 +27,7 @@ class SalleSerializer(serializers.ModelSerializer):
 class FiliereSerializer(serializers.ModelSerializer):
     class Meta:
         model = Filiere
-        fields = "__all__"
+        fields = ['id', 'libelle', 'metier', 'planning']
         depth = 1
 
 
@@ -34,13 +41,6 @@ class CourSerializer(serializers.ModelSerializer):
 class FormateurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Formateur
-        fields = "__all__"
-        depth = 1
-
-
-class PlanningSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Planning
         fields = "__all__"
         depth = 1
 
