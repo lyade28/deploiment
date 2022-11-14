@@ -56,3 +56,23 @@ class PlanningList(generics.ListCreateAPIView):
 class Planningdestail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Planning
     serializer_class = PlanningSerializer
+
+
+class SemaineList(generics.ListCreateAPIView):
+    queryset = Semaine.objects.all()
+    serializer_class = SemaineSerializer
+
+
+class Semainedestail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Semaine
+    serializer_class = SemaineSerializer
+
+
+class FilliereMetierList(generics.ListCreateAPIView):
+    queryset = FilliereMetier.objects.all()
+    serializer_class = FilliereMetierSerializer
+
+
+class FilliereMetierdestail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = FilliereMetier
+    serializer_class = FilliereMetierSerializer

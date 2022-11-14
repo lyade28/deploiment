@@ -1,29 +1,7 @@
 from django.db import models
-from .models import *
-
+from isep.models import *
 
 # Create your models here.
-
-class Salle(models.Model):
-    Libelle = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.Libelle
-
-
-class Filiere(models.Model):
-    Libelle = models.CharField(max_length=300)
-
-    def __str__(self):
-        return self.Libelle
-
-
-class Cour(models.Model):
-    Libelle = models.CharField(max_length=300)
-
-    def __str__(self):
-        return self.Libelle
-
 
 metier = [
     ("TIC", "tic"),
@@ -32,25 +10,66 @@ metier = [
 ]
 
 
+class Salle(models.Model):
+    Libelle = models.CharField(max_length=200, null=True)
+
+    def __str__(self):
+        return self.Libelle
+
+
+class Filiere(models.Model):
+    Libelle = models.CharField(max_length=300, null=True)
+    metier = models.CharField(choices=metier, max_length=200, null=True)
+
+    def __str__(self):
+        return self.Libelle
+
+
+class Cour(models.Model):
+    Libelle = models.CharField(max_length=300, null=True)
+
+    def __str__(self):
+        return self.Libelle
+
+
 class Formateur(models.Model):
-    name = models.CharField(max_length=200)
-    metiers = models.CharField(choices=metier, max_length=50)
+    name = models.CharField(max_length=200, null=True)
+    metiers = models.CharField(choices=metier, max_length=50, null=True)
 
     def __str__(self):
         return self.name
 
 
 class Planning(models.Model):
-    date = models.DateField( )
-    heuredebut = models.TimeField()
-    heurefin = models.TimeField()
-    activite = models.ForeignKey(Cour, on_delete=models.CASCADE)
-    filiere = models.ForeignKey(Filiere, on_delete=models.CASCADE)
-    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE)
-    salls = models.ForeignKey(Salle, on_delete=models.CASCADE)
-    promo = models.CharField(max_length=300)
-    Annee = models.CharField(max_length=300)
-    Semaine = models.CharField(max_length=300)
+    date = models.DateField(null=True)
+    heureDebut = models.TimeField(null=True)
+    heureFin = models.TimeField(null=True)
+    activite = models.ForeignKey(Cour, on_delete=models.CASCADE, null=True)
+    filiere = models.ForeignKey(Filiere, on_delete=models.CASCADE, null=True)
+    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, null=True)
+    salle = models.ForeignKey(Salle, on_delete=models.CASCADE, null=True)
+    promo = models.CharField(max_length=300, null=True)
+    annee = models.CharField(max_length=300, null=True)
+    semaine = models.CharField(max_length=300, null=True)
 
     def __str__(self):
-        return self.Semaine
+        return self.promo
+
+
+class FilliereMetier(models.Model):
+    Libelle = models.CharField(max_length=300, null=True)
+    metier = models.CharField(choices=metier, max_length=200, null=True)
+    planning = models.ForeignKey(Planning, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.Libelle
+
+
+class Semaine(models.Model):
+    code = models.CharField(max_length=200, null=True)
+    metier = models.CharField(choices=metier, max_length=200, null=True)
+    promo = models.CharField(max_length=200, null=True)
+    filiereMetiers = models.ForeignKey(FilliereMetier, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.promo

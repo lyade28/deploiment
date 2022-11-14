@@ -7,4 +7,6 @@ admin.site.register(Filiere)
 admin.site.register(Cour)
 admin.site.register(Formateur)
 admin.site.register(Planning)
+admin.site.register(Semaine)
+admin.site.register(FilliereMetier)
  
