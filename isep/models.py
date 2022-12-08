@@ -42,24 +42,31 @@ class Formateur(models.Model):
 
 class Planning(models.Model):
     date = models.DateField(null=True)
-    heureDebut = models.TimeField(null=True)
-    heureFin = models.TimeField(null=True)
-    activite = models.CharField(max_length=200, null=True)
-    filiere = models.CharField(max_length=200, null=True)
-    formateur = models.CharField(max_length=200, null=True)
-    salle = models.CharField(max_length=200, null=True)
-    promo = models.CharField(max_length=300, null=True)
-    annee = models.CharField(max_length=300, null=True)
-    semaine = models.CharField(max_length=300, null=True)
+    heureDebut1 = models.TimeField(null=True)
+    heureDebut2 = models.TimeField(null=True)
+    heureDebut3 = models.TimeField(null=True)
+    heureFin1 = models.TimeField(null=True)
+    heureFin2 = models.TimeField(null=True)
+    heureFin3 = models.TimeField(null=True)
+    activite1 = models.CharField(max_length=200, null=True)
+    activite2 = models.CharField(max_length=200, null=True)
+    activite3 = models.CharField(max_length=200, null=True)
+    formateur1 = models.CharField(max_length=200, null=True)
+    formateur2 = models.CharField(max_length=200, null=True)
+    formateur3 = models.CharField(max_length=200, null=True)
+    salle1 = models.CharField(max_length=200, null=True)
+    salle2 = models.CharField(max_length=200, null=True)
+    salle3 = models.CharField(max_length=200, null=True)
+  
 
     def __str__(self):
-        return self.promo
+        return f'{self.date}'
 
 
 class FilliereMetier(models.Model):
     libelle = models.CharField(max_length=300, null=True)
     metier = models.CharField(choices=metier, max_length=200, null=True)
-    planning = models.ManyToManyField(Planning)
+    planning = models.ManyToManyField(Planning ,)
 
     def __str__(self):
         return self.libelle
