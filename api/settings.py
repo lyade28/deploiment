@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-^fftm$6rsjiatu==4vhn8ji(olwwt0h*q2)%_!%@1&t+9xp&j4
 DEBUG = True
 
 # ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = ['https://web-production-593d.up.railway.app/']
 
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
@@ -138,17 +139,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATIC_ROOT = 'staticfiles'
 
-# if 'DATABASE_URL' in os.environ:
-#     import dj_database_url
-
-#     DATABASES = {'default': dj_database_url.config()}
-
-# # db_from_env = dj_database_url.config(conn_max_age=500)
-# # DATABASES['default'].update(db_from_env)
